@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://cat-front.onrender.com/",
+    origin: "https://cat-front.onrender.com",
   })
 );
 
