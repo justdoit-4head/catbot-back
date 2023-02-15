@@ -9,19 +9,22 @@ app.use(cors());
 dotenv.config();
 app.use(express.json());
 
-const uri = process.env.URI;
-const port = process.env.PORT;
+// const uri = process.env.URI;
+// const port = process.env.PORT;
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://admin:SuzhWUOT4c7ULDiq@cluster0.wartca5.mongodb.net/?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(console.log("connected to the database sucessfully"))
   .then(
-    app.listen(port, () => {
-      console.log(`listening and running on port: ${port}`);
+    app.listen(5000, () => {
+      console.log(`listening and running on port: 5000`);
     })
   );
 
