@@ -23,8 +23,8 @@ mongoose
   )
   .then(console.log("connected to the database sucessfully"))
   .then(
-    app.listen(5000, () => {
-      console.log(`listening and running on port: 5000`);
+    app.listen(4000, () => {
+      console.log(`listening and running on port: 3000`);
     })
   );
 
