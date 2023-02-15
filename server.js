@@ -5,7 +5,12 @@ import dotenv from "dotenv";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://cat-front.onrender.com/",
+  })
+);
+
 dotenv.config();
 app.use(express.json());
 
