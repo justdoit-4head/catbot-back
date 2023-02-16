@@ -5,7 +5,11 @@ import dotenv from "dotenv";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 dotenv.config();
 app.use(express.json());
@@ -34,11 +38,11 @@ import users from "./models/users.js";
 
 // eliminating cors error
 
-app.all("/", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+// app.all("/", function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
 
 // retrieving all the messages
 app.get("/messages", async (req, res) => {
