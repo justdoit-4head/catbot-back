@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*, https://cat-front.onrender.com",
+    origin: "https://cat-front.onrender.com",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -46,14 +46,14 @@ import users from "./models/users.js";
 // });
 
 // retrieving all the messages
-app.get("/messages", async (req, res) => {
+app.get("/messages", cors(), async (req, res) => {
   const msges = await messages.find();
 
   res.json(msges);
 });
 
 // adding a new message
-app.post("/messages/addnew", (req, res) => {
+app.post("/messages/addnew", cors(), (req, res) => {
   const newmsg = new messages({
     text: req.body.text,
     user: req.body.user,
@@ -63,13 +63,13 @@ app.post("/messages/addnew", (req, res) => {
 });
 
 // deleting a message
-app.delete("/messages/delete/:id", async (req, res) => {
+app.delete("/messages/delete/:id", cors(), async (req, res) => {
   const deleteMessage = await messages.findByIdAndDelete(req.params.id);
   res.json(deleteMessage);
 });
 
 // updating a message
-app.get("/messages/update/:id", async (req, res) => {
+app.get("/messages/update/:id", cors(), async (req, res) => {
   const msg = await messages.findById(req.params.id);
 
   msg.text = req.body.text;
@@ -81,7 +81,7 @@ app.get("/messages/update/:id", async (req, res) => {
 
 // auth && register
 
-app.post("/login", async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   const newUser = new users({
     username: req.body.username,
     passowrd: req.body.password,
@@ -97,7 +97,7 @@ app.get("/users", async (req, res) => {
   res.json(usrs);
 });
 
-app.post("/auth", async (req, res) => {
+app.post("/auth", cors(), async (req, res) => {
   const authUser = await users.findOne({
     username: req.body.username,
     passowrd: req.body.password,
