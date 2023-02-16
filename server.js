@@ -5,11 +5,7 @@ import dotenv from "dotenv";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://cat-front.onrender.com",
-  })
-);
+app.use(cors());
 
 dotenv.config();
 app.use(express.json());
@@ -35,6 +31,14 @@ mongoose
 
 import messages from "./models/messages.js";
 import users from "./models/users.js";
+
+// eliminating cors error
+
+app.all("/", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 // retrieving all the messages
 app.get("/messages", async (req, res) => {
