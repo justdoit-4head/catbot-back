@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "*, https://cat-front.onrender.com",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
