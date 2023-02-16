@@ -40,12 +40,18 @@ import users from "./models/users.js";
 // eliminating cors error
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+  const allowedOrigins = [
+    "https://cat-front.onrender.com/messages",
+    "https://cat-front.onrender.com/auth",
+    "https://cat-front.onrender.com/messages/addnew",
+    "https://cat-front.onrender.com/login",
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  return next();
 });
 
 // retrieving all the messages
